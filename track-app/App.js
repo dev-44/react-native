@@ -9,7 +9,8 @@ import TrackCreateScreen from './src/screens/TrackCreateScreen'
 import TrackDetailsScreen from './src/screens/TrackDetailsScreen'
 import TrackListScreen from './src/screens/TrackListScreen'
 import InitialScreen from './src/screens/InitialScreen';
-import { Provider as AuthProvider, Context as AuthContext } from './src/context/authContext'
+import { Provider as AuthProvider, Context as AuthContext } from './src/context/AuthContext'
+import { Provider as LocationProvider } from './src/context/LocationContext'
 
 const Stack = createNativeStackNavigator()
 const Tab = createMaterialBottomTabNavigator();
@@ -65,8 +66,10 @@ const RootNavigation = () => {
 
 export default function App () {
     return (
-        <AuthProvider>
-          <RootNavigation />
-        </AuthProvider>
+        <LocationProvider>
+            <AuthProvider>
+                <RootNavigation />
+            </AuthProvider>
+        </LocationProvider>
     )
 }

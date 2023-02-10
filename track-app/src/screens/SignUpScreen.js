@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import { Text } from 'react-native-elements' 
 import Spacer from '../components/Spacer'
-import { Context as AuthContext } from '../context/authContext'
+import { Context as AuthContext } from '../context/AuthContext'
 import AuthForm from '../components/AuthForm'
 import NavLink from '../components/NavLink'
 

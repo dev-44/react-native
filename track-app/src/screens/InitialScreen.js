@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react'
-import { Context as AuthContext } from '../context/authContext'
+import { Context as AuthContext } from '../context/AuthContext'
 import { useNavigation } from '@react-navigation/native'
 
 const InitialScreen = () => {

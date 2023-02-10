@@ -2,7 +2,7 @@ import React, { useContext, useEffect} from 'react'
 import { View, StyleSheet, Text} from 'react-native'
 import AuthForm from '../components/AuthForm'
 import NavLink from '../components/NavLink'
-import { Context as AuthContext } from '../context/authContext'
+import { Context as AuthContext } from '../context/AuthContext'
 
 const SignInScreen = ({ navigation }) => {
 
