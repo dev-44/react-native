@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { Icon } from 'react-native-elements';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
@@ -11,6 +12,8 @@ import TrackListScreen from './src/screens/TrackListScreen'
 import InitialScreen from './src/screens/InitialScreen';
 import { Provider as AuthProvider, Context as AuthContext } from './src/context/AuthContext'
 import { Provider as LocationProvider } from './src/context/LocationContext'
+import { Provider as TrackProvider } from './src/context/TrackContext';
+import { FontAwesome } from '@expo/vector-icons'
 
 const Stack = createNativeStackNavigator()
 const Tab = createMaterialBottomTabNavigator();
@@ -21,6 +24,7 @@ function TrackListNavigator() {
             <Stack.Screen 
                 name='TrackList'
                 component={TrackListScreen}
+                options={{title: 'Tracks'}}
             />
             <Stack.Screen 
                 name='TrackDetails'
@@ -39,9 +43,9 @@ const RootNavigation = () => {
 
             {state.token !== null ? 
                 <Tab.Navigator initialRouteName='TrackListNavigator'>
-                    <Tab.Screen name="TrackCreate" component={TrackCreateScreen} />
-                    <Tab.Screen name="Account" component={AccountScreen} />
-                    <Tab.Screen name="TrackListNavigator" component={TrackListNavigator} />
+                    <Tab.Screen name="TrackCreate" component={TrackCreateScreen} options={{title: 'Add Track', tabBarIcon: ({color, size}) => (<Icon name="add" color={color} size={size} />), }} />
+                    <Tab.Screen name="Account" component={AccountScreen} options={{ tabBarIcon: ({color, size}) => (<Icon name="account-circle" color={color} size={size} />), }} />
+                    <Tab.Screen name="TrackListNavigator" component={TrackListNavigator} options={{title: 'Tracks', tabBarIcon: ({color, size}) => (<Icon name="list" color={color} size={size} />), }} />
                 </Tab.Navigator>
 
                 :
@@ -66,10 +70,12 @@ const RootNavigation = () => {
 
 export default function App () {
     return (
-        <LocationProvider>
-            <AuthProvider>
-                <RootNavigation />
-            </AuthProvider>
-        </LocationProvider>
+        <TrackProvider>
+            <LocationProvider>
+                <AuthProvider>
+                    <RootNavigation />
+                </AuthProvider>
+            </LocationProvider>
+        </TrackProvider>
     )
 }
